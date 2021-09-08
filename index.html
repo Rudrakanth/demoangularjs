@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Support Center Demo</title>
+    <link href="content/css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="app/lib/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="app/lib/angular.min.js"></script>
+    <script src="app/app.js"></script>
+    
+</head>
+
+<body ng-app="mydemo">
+    <header ng-include="'header.html'"></header>
+    <div class="container col-sm-6" ng-controller="myController">
+        <form name="supportForm" ng-submit="submitSupportForm()" novalidate>            
+            <div class="mb-3">
+                <label for="fName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="fName" name="fName" 
+                placeholder="Enter First Name" ng-model="supportForm.firstName" ng-required="true"/>
+            </div>
+
+            <div class="mb-3">
+                <label for="lName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lName" name="fName" 
+                placeholder="Enter Last Name" ng-model="supportForm.lastName" ng-required="true"/>
+            </div>
+
+            <div class="mb-3">
+                <label for="sType" class="form-label">Support Type</label>                 
+                <select class="form-select" id="sType" name="sType" 
+                ng-options="item as item.label for item in supportTypes track by item.id"
+                ng-model="supportForm.supportType">                    
+                  </select>                
+            </div>
+
+            <div class="mb-3">
+                <label for="dPicker" class="form-label">Incident Date
+                </label>
+                <input type="date" class="form-control" id="dPicker" name="dPicker" 
+                placeholder="Select Incident Date" ng-model="supportForm.iDate" ng-required="true"/>
+            </div>
+            
+            <div class="mb-3">
+                <label for="sDesc" class="form-label">Description</label>
+                <textarea class="form-control" id="sDesc" name="sDesc" rows="3" 
+                placeholder="Enter Description" ng-model="supportForm.iDescription" ng-required="true">
+            </textarea>
+              </div>
+
+            <div class="form-group row">
+                <div class="offset-4 col-8">
+                <button name="reset" type="submit" class="btn btn-secondary">Reset</button>
+                <button name="submit" type="submit" class="btn btn-primary" 
+                  ng-disabled="supportForm.$invalid">Submit</button>
+                <button name="save" type="submit" class="btn btn-primary">Save</button>
+                  
+                </div>
+              </div>
+              
+        </form>
+    </div>
+
+</body>
+</html>
